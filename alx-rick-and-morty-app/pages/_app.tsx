@@ -1,13 +1,14 @@
-import "@/styles/globals.css";
-import type { AppProps } from "next/app";
-import { ApolloProvider } from "@apollo/client";
-import client from "@/graphql/apolloClient";
+// pages/_app.tsx
+import '../styles/globals.css'; // keep if your project has this file; otherwise it's fine to keep the import
+import type { AppProps } from 'next/app';
+import ErrorBoundary from '../components/ErrorBoundary';
 
-export default function App({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ApolloProvider client={client}>
+    <ErrorBoundary>
       <Component {...pageProps} />
-    </ApolloProvider>
+    </ErrorBoundary>
   );
 }
 
+export default MyApp;
