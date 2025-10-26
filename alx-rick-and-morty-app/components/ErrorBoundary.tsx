@@ -1,5 +1,6 @@
 // components/ErrorBoundary.tsx
 import React, { ReactNode } from 'react';
+import * as Sentry from '@sentry/react';
 
 interface State {
   hasError: boolean;
@@ -16,14 +17,18 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
   }
 
   static getDerivedStateFromError(error: Error): State {
-    // Update state so the next render shows the fallback UI.
     return { hasError: true };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    // Log the error for now (Task 3 will integrate a monitoring service).
+    // Log to console for local debugging
     // eslint-disable-next-line no-console
     console.log('ErrorBoundary caught:', { error, errorInfo });
+
+    // Report to Sentry (if initialized)
+    if (Sentry && typeof Sentry.captureException === 'function') {
+      Sentry.captureException(error, { extra: errorInfo });
+    }
   }
 
   render() {

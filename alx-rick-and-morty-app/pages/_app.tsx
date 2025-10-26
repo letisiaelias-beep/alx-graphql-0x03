@@ -1,7 +1,10 @@
 // pages/_app.tsx
-import '../styles/globals.css'; // keep this if your project has it (no-op if the file doesn't exist)
+import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-import ErrorBoundary from '../components/ErrorBoundary'; // relative import to avoid alias issues
+import ErrorBoundary from '../components/ErrorBoundary';
+
+// Ensure Sentry initialization runs
+import '../sentry.client';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
