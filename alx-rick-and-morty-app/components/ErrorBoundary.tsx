@@ -21,8 +21,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    // Log the error for now. Replace with Sentry/monitoring in Task 3.
-    // Example: Sentry.captureException(error, { extra: errorInfo });
+    // Log the error for now (Task 3 will integrate a monitoring service).
     // eslint-disable-next-line no-console
     console.log('ErrorBoundary caught:', { error, errorInfo });
   }
