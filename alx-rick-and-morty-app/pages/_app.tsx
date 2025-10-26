@@ -1,7 +1,7 @@
 // pages/_app.tsx
-import '../styles/globals.css'; // keep if your project has this file; otherwise it's fine to keep the import
+import '../styles/globals.css'; // keep this if your project has it (no-op if the file doesn't exist)
 import type { AppProps } from 'next/app';
-import ErrorBoundary from '../components/ErrorBoundary';
+import ErrorBoundary from '../components/ErrorBoundary'; // relative import to avoid alias issues
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
